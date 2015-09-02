@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css"/>
+    <style>
+
+        /*
+            What are we trying to achieve?
+
+            Simple layouts for applications using a few basic layout primitives.
+
+            How?
+
+            Divide up the app into vertical or horizontal containers,
+            with either fixed width/height or flexible (fill the rest of the space) components.
+            Behind the scenes we use flexbox.
+
+            We want to avoid any random 3px paddings and -1px margins - so only use 'rem's for padding and margins
+            The only time we should use a 'px' is when we want a 1px border
+
+            Modern browsers only!
+        */
+
+        /*
+        // a modern color palette - https://flatuicolors.com/
+@turquoise: #1ABC9C;
+@green-sea: #16A085;
+@emerland: #2ECC71;
+@nephritis: #27AE60;
+@peter-river: #3498DB;
+@belize-hole: #2980B9;
+@amethyst: #9B59B6;
+@wisteria: #8E44AD;
+@wet-asphalt: #34495E;
+@midnight-blue: #2C3E50;
+@sun-flower: #F1C40F;
+@orange: #F39C12;
+@carrot: #E67E22;
+@pumpkin: #D35400;
+@alizarin: #E74C3C;
+@pomegranate: #C0392B;
+@clouds: #ECF0F1;
+@silver: #BDC3C7;
+@concrete: #95A5A6;
+@asbestos: #7F8C8D;
+        */
+
+        /*
+            ----------------------------------------------------------------------------------------------------------
+            This is where we style any HTML elements, we shouldn't need to do much because normalize.css takes care of most for us
+        */
+
+        /*
+            use a sane border box everywhere
+            http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+            https://css-tricks.com/box-sizing/
+        */
+        *, *:before, *:after {
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        /*
+            this is where we set the font size of the body text - all other sizes and measuments will derive from this
+            so change this to make eveything smaller / bigger
+        */
+        html, body {
+            font-size: 16px;
+            /* we use a line height of 1.5 to give a nice sense of rhythm and vertical spacing */
+            line-height: 1.5rem;
+            height: 100%;
+            min-height: 100%;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /*
+            ----------------------------------------------------------------------------------------------------------
+            These are the basic building blocks
+        */
+
+
+        /* vertically stacked */
+        .column {
+            display: flex;
+            flex: 1;
+            position: relative;
+
+            flex-direction: column;
+            height: 100%;
+            min-height: 100%;
+        }
+
+        /* left to right */
+        .row {
+            display: flex;
+            flex: 1;
+
+            flex-direction: row;
+            height: 100%;
+            /*position: absolute;*/
+            /*left: 0;*/
+            /*right: 0;*/
+        }
+
+        .column > .fixed {
+            width: 100%;
+        }
+
+        .row > .fixed {
+            min-height: 100%;
+            height: 100%;
+        }
+
+        .column > .flex {
+        }
+
+        .row > .flex {
+            height: 100%;
+        }
+
+        /* flexible content area */
+        .flex {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+
+        /* ---------------------------------------------------------------------------------------------------------- */
+
+        .header {
+            height: 4rem;
+            line-height: 4rem;
+            padding: 0 1rem;
+            background: #111;
+            color: #fff;
+        }
+
+
+        .sidebar {
+            background: #2C3E50;
+            font-size: 2rem;
+            width: 4rem;
+            color: #fff;
+            text-align: center;
+        }
+        .sidebar li {
+           padding: 1rem 0;
+        }
+        .sidebar li:hover {
+            background: #333;
+            cursor: pointer;
+        }
+
+
+
+        .emails {
+            width: 20rem;
+            border-right: 1px solid #ddd;
+        }
+        .emails li {
+            border-bottom: 1px solid #ddd;
+        }
+        .emails li:last-child {
+            border-bottom: none;
+        }
+        .emails .email {
+            padding: .5rem 1rem;
+            border-right: .5rem solid transparent;
+            cursor: pointer;
+        }
+        .emails .email.selected {
+            background: #3498DB;
+            color: #fff;
+            border-right-color: #2980B9;
+        }
+
+
+
+        .content {
+
+        }
+        .content .subject {
+            padding: 0 1rem;
+            z-index: 2;
+            background: #BDC3C7;
+            /* use ellipsis to truncate long titles */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .content .from {
+            padding: 0 1rem;
+            background: #ECF0F1;
+            /* give it a 3d shadow look - so that the panel below slides under it */
+            -moz-box-shadow: 0 2px 5px #888;
+            -webkit-box-shadow: 0 2px 5px #888;
+            box-shadow: 0 2px 5px #888;
+            /* we want it above the panel below it */
+            z-index: 1;
+        }
+        .content .message {
+            padding: 1rem;
+        }
+
+
+
+        .ellipsis {
+
+        }
+
+
+        .bottom-shadow {
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="column">
+        <div class="fixed header">
+            <div class="row">
+                <div class="fixed logo">App Name</div>
+                <div class="flex"></div>
+                <div class="fixed search"><input /></div>
+            </div>
+        </div>
+
+        <div class="flex">
+            <div class="row">
+                <div class="fixed sidebar">
+                    <ul>
+                        <li>✉</li>
+                        <li>✍</li>
+                        <li>✪</li>
+                    </ul>
+                </div>
+                <div class="fixed emails">
+                    <ul>
+
+                        <li>
+                            <div class="email">
+                                <div class="subject">How to write JavaScript like u is a god</div><div class="from">Tom KP</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="email">
+                                <div class="subject">Teach me Haskell</div><div class="from">Gary Smith</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="email selected">
+                                <div class="subject">Point Break - probably the best movie ever</div><div class="from">Tom KP</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="email">
+                                <div class="subject">Saunton vs Mavericks</div><div class="from">Tom KP</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex content">
+                    <div class="column">
+                        <div class="fixed subject">
+                            <h1>Point Break is the best movie ever and we want to use ellipsis because this subject is very long</h1>
+                        </div>
+                        <div class="fixed from">
+                             Tom KP (tom@tomkp.com)
+                        </div>
+                        <div class="flex message">
+                            Lorem ipsum dolor sit amet, eos legendos repudiare cu, vide doctus pro ad. Ei sale reque clita eam. Omnis dicam ad per, te eam deleniti periculis interpretaris. Per ad dolores sententiae. Pri et vero elitr fuisset, eum eu mazim scriptorem, vidit abhorreant dissentias usu id.
+                            <br>
+                            <br>
+                            Vocent quaerendum sea et, sea quod percipit quaestio cu, vidisse dignissim adipiscing nam ut. Est in denique dissentias, zril nobis utinam pro no, suscipit consequat honestatis has te. Usu solet feugait ne, nec ei laudem bonorum repudiandae, at mea error vivendo. Pri at mutat mollis, in sea omnis singulis. Ius cu clita decore eligendi. Splendide philosophia ex vix, eius probatus adipiscing ei nec. Summo audiam intellegam eu nec, no vis sale nonumy eligendi.
+                            <br>
+                            <br>
+                            Accumsan explicari at eos. Id has justo essent elaboraret, officiis reprehendunt ea qui, exerci aliquando sententiae sit ne. Ubique aliquid pri no, id pri suavitate scripserit, mucius nominavi pertinax an has. Id tale porro facilisi eam, minim ubique instructior ut mei, primis ponderum praesent an sea. Vitae fabulas in pri, menandri dignissim an sea. Nec cu posse maiestatis assueverit.
+                            <br>
+                            <br>
+                            Sea ei movet omnesque, vis at offendit scribentur. Usu an aliquip mediocrem constituam. His quot wisi at. Mea et wisi iudico feugait, in sonet evertitur vim.
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
