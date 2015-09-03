@@ -61,6 +61,7 @@
             -moz-box-sizing: border-box;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
+            position: relative;
         }
 
         /*
@@ -86,7 +87,6 @@
             These are the basic building blocks
         */
 
-
         /* vertically stacked */
         .column {
             display: flex;
@@ -104,10 +104,11 @@
             flex: 1;
 
             flex-direction: row;
-            height: 100%;
-            /*position: absolute;*/
-            /*left: 0;*/
-            /*right: 0;*/
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
         }
 
         .column > .fixed {
@@ -133,14 +134,23 @@
         }
 
 
-        /* ---------------------------------------------------------------------------------------------------------- */
+        /*
+            ----------------------------------------------------------------------------------------------------------
+            This is where you style the app... just use rems!
+        */
+
 
         .header {
             height: 4rem;
             line-height: 4rem;
-            padding: 0 1rem;
             background: #111;
             color: #fff;
+        }
+        .header .logo {
+            padding: 0 1rem;
+        }
+        .header .search {
+            padding: 0 1rem;
         }
 
 
@@ -152,13 +162,12 @@
             text-align: center;
         }
         .sidebar li {
-           padding: 1rem 0;
+            padding: 1rem 0;
         }
         .sidebar li:hover {
             background: #333;
             cursor: pointer;
         }
-
 
 
         .emails {
@@ -181,15 +190,21 @@
             color: #fff;
             border-right-color: #2980B9;
         }
-
+        .emails .subject {
+        }
+        .emails .from {
+            font-size: .75rem;
+        }
 
 
         .content {
 
         }
         .content .subject {
-            padding: 0 1rem;
-            z-index: 2;
+            /* one line of text - vertically centered? set line height and font size to be equal */
+            font-size: 2rem;
+            line-height: 2rem;
+            padding: 1rem;
             background: #BDC3C7;
             /* use ellipsis to truncate long titles */
             white-space: nowrap;
@@ -211,75 +226,124 @@
         }
 
 
-
     </style>
 </head>
 <body>
 
-    <div class="column">
-        <div class="fixed header">
-            <div class="row">
-                <div class="fixed logo">App Name</div>
-                <div class="flex"></div>
-                <div class="fixed search"><input /></div>
-            </div>
+<div class="column">
+    <div class="fixed header">
+        <div class="row">
+            <div class="fixed logo">App Name</div>
+            <div class="flex"></div>
+            <div class="fixed search"><input/></div>
         </div>
+    </div>
 
-        <div class="flex">
-            <div class="row">
-                <div class="fixed sidebar">
-                    <ul>
+    <div class="flex">
+        <div class="row">
+            <div class="fixed sidebar">
+                <div class="column">
+                    <ul class="flex">
                         <li>✉</li>
                         <li>✍</li>
                         <li>✪</li>
                     </ul>
                 </div>
-                <div class="fixed emails">
-                    <ul>
+            </div>
+            <div class="fixed emails">
+                <ul>
 
-                        <li>
-                            <div class="email">
-                                <div class="subject">How to write JavaScript like u is a god</div><div class="from">Tom KP</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="email">
-                                <div class="subject">Teach me Haskell</div><div class="from">Gary Smith</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="email selected">
-                                <div class="subject">Point Break - probably the best movie ever</div><div class="from">Tom KP</div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="email">
-                                <div class="subject">Saunton vs Mavericks</div><div class="from">Tom KP</div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="flex content">
-                    <div class="column">
-                        <div class="fixed subject">
-                            <h1>Point Break is the best movie ever and we want to use ellipsis because this subject is very long</h1>
+                    <li>
+                        <div class="email">
+                            <div class="subject">How to write JavaScript</div>
+                            <div class="from">Tom KP</div>
                         </div>
-                        <div class="fixed from">
-                             Tom KP (tom@tomkp.com)
+                    </li>
+                    <li>
+                        <div class="email">
+                            <div class="subject">Teach me Haskell</div>
+                            <div class="from">Gary Smith</div>
                         </div>
-                        <div class="flex message">
-                            Lorem ipsum dolor sit amet, eos legendos repudiare cu, vide doctus pro ad. Ei sale reque clita eam. Omnis dicam ad per, te eam deleniti periculis interpretaris. Per ad dolores sententiae. Pri et vero elitr fuisset, eum eu mazim scriptorem, vidit abhorreant dissentias usu id.
-                            <br>
-                            <br>
-                            Vocent quaerendum sea et, sea quod percipit quaestio cu, vidisse dignissim adipiscing nam ut. Est in denique dissentias, zril nobis utinam pro no, suscipit consequat honestatis has te. Usu solet feugait ne, nec ei laudem bonorum repudiandae, at mea error vivendo. Pri at mutat mollis, in sea omnis singulis. Ius cu clita decore eligendi. Splendide philosophia ex vix, eius probatus adipiscing ei nec. Summo audiam intellegam eu nec, no vis sale nonumy eligendi.
-                            <br>
-                            <br>
-                            Accumsan explicari at eos. Id has justo essent elaboraret, officiis reprehendunt ea qui, exerci aliquando sententiae sit ne. Ubique aliquid pri no, id pri suavitate scripserit, mucius nominavi pertinax an has. Id tale porro facilisi eam, minim ubique instructior ut mei, primis ponderum praesent an sea. Vitae fabulas in pri, menandri dignissim an sea. Nec cu posse maiestatis assueverit.
-                            <br>
-                            <br>
-                            Sea ei movet omnesque, vis at offendit scribentur. Usu an aliquip mediocrem constituam. His quot wisi at. Mea et wisi iudico feugait, in sonet evertitur vim.
+                    </li>
+                    <li>
+                        <div class="email selected">
+                            <div class="subject">Point Break - probably the best movie ever</div>
+                            <div class="from">Tom KP</div>
                         </div>
+                    </li>
+                    <li>
+                        <div class="email">
+                            <div class="subject">Saunton vs Mavericks</div>
+                            <div class="from">Tom KP</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="email">
+                            <div class="subject">Scala or scalar</div>
+                            <div class="from">J Bell</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="email">
+                            <div class="subject">I heart SQL</div>
+                            <div class="from">R Forward</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex content">
+                <div class="column">
+                    <div class="fixed subject">
+                        Point Break is the best movie ever and we want to use ellipsis because this subject is very long
                     </div>
+                    <div class="fixed from">
+                        Tom KP (tom@tomkp.com)
+                    </div>
+                    <div class="flex message">
+                        Lorem ipsum dolor sit amet, eos legendos repudiare cu, vide doctus pro ad. Ei sale reque clita
+                        eam. Omnis dicam ad per, te eam deleniti periculis interpretaris. Per ad dolores sententiae. Pri
+                        et vero elitr fuisset, eum eu mazim scriptorem, vidit abhorreant dissentias usu id.
+                        <br>
+                        <br>
+                        Vocent quaerendum sea et, sea quod percipit quaestio cu, vidisse dignissim adipiscing nam ut.
+                        Est in denique dissentias, zril nobis utinam pro no, suscipit consequat honestatis has te. Usu
+                        solet feugait ne, nec ei laudem bonorum repudiandae, at mea error vivendo. Pri at mutat mollis,
+                        in sea omnis singulis. Ius cu clita decore eligendi. Splendide philosophia ex vix, eius probatus
+                        adipiscing ei nec. Summo audiam intellegam eu nec, no vis sale nonumy eligendi.
+                        <br>
+                        <br>
+                        Accumsan explicari at eos. Id has justo essent elaboraret, officiis reprehendunt ea qui, exerci
+                        aliquando sententiae sit ne. Ubique aliquid pri no, id pri suavitate scripserit, mucius nominavi
+                        pertinax an has. Id tale porro facilisi eam, minim ubique instructior ut mei, primis ponderum
+                        praesent an sea. Vitae fabulas in pri, menandri dignissim an sea. Nec cu posse maiestatis
+                        assueverit.
+                        <br>
+                        <br>
+                        Sea ei movet omnesque, vis at offendit scribentur. Usu an aliquip mediocrem constituam. His quot
+                        wisi at. Mea et wisi iudico feugait, in sonet evertitur vim.
+                        <br>
+                        <br>
+                        Lorem ipsum dolor sit amet, eos legendos repudiare cu, vide doctus pro ad. Ei sale reque clita
+                        eam. Omnis dicam ad per, te eam deleniti periculis interpretaris. Per ad dolores sententiae. Pri
+                        et vero elitr fuisset, eum eu mazim scriptorem, vidit abhorreant dissentias usu id.
+                        <br>
+                        <br>
+                        Vocent quaerendum sea et, sea quod percipit quaestio cu, vidisse dignissim adipiscing nam ut.
+                        Est in denique dissentias, zril nobis utinam pro no, suscipit consequat honestatis has te. Usu
+                        solet feugait ne, nec ei laudem bonorum repudiandae, at mea error vivendo. Pri at mutat mollis,
+                        in sea omnis singulis. Ius cu clita decore eligendi. Splendide philosophia ex vix, eius probatus
+                        adipiscing ei nec. Summo audiam intellegam eu nec, no vis sale nonumy eligendi.
+                        <br>
+                        <br>
+                        Accumsan explicari at eos. Id has justo essent elaboraret, officiis reprehendunt ea qui, exerci
+                        aliquando sententiae sit ne. Ubique aliquid pri no, id pri suavitate scripserit, mucius nominavi
+                        pertinax an has. Id tale porro facilisi eam, minim ubique instructior ut mei, primis ponderum
+                        praesent an sea. Vitae fabulas in pri, menandri dignissim an sea. Nec cu posse maiestatis
+                        assueverit.
+                        <br>
+                        <br>
+                    </div>
+                </div>
 
             </div>
         </div>
