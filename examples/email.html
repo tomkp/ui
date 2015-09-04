@@ -89,9 +89,20 @@
 
         /* vertically stacked */
         .column {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
             flex: 1;
             position: relative;
+
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
 
             flex-direction: column;
             height: 100%;
@@ -100,8 +111,19 @@
 
         /* left to right */
         .row {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
             display: flex;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
             flex: 1;
+
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
 
             flex-direction: row;
             height: 100%;
@@ -128,6 +150,9 @@
 
         /* flexible content area */
         .flex {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
             flex: 1;
             overflow-y: auto;
         }
@@ -214,8 +239,6 @@
             padding: 0 1rem;
             background: #ECF0F1;
             /* give it a 3d shadow look - so that the panel below slides under it */
-            -moz-box-shadow: 0 2px 5px #888;
-            -webkit-box-shadow: 0 2px 5px #888;
             box-shadow: 0 2px 5px #888;
             /* we want it above the panel below it */
             z-index: 1;
