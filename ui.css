@@ -1,0 +1,122 @@
+/*
+           What are we trying to achieve?
+
+           Simple layouts for applications using a few basic layout primitives.
+
+           How?
+
+           Divide up the app into vertical or horizontal containers,
+           with either fixed width/height or flexible (fill the rest of the space) components.
+           Behind the scenes we use flexbox.
+
+           We want to avoid any random 3px paddings and -1px margins - so only use 'rem's for padding and margins
+           The only time we should use a 'px' is when we want a 1px border
+
+           Modern browsers only!
+*/
+
+/*
+    ----------------------------------------------------------------------------------------------------------
+    This is where we style any HTML elements, we shouldn't need to do much because normalize.css takes care of most for us
+*/
+
+/*
+    use a sane border box everywhere
+    http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+    https://css-tricks.com/box-sizing/
+*/
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/*
+    this is where we set the font size of the body text - all other sizes and measuments will derive from this
+    so change this to make eveything smaller / bigger
+*/
+html, body {
+    font-size: 16px;
+    /* we use a line height of 1.5 to give a nice sense of rhythm and vertical spacing */
+    line-height: 1.5rem;
+    height: 100%;
+    min-height: 100%;
+}
+
+
+/*
+    ----------------------------------------------------------------------------------------------------------
+    These are the basic building blocks
+*/
+
+/* vertically stacked */
+.column {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: relative;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+
+    flex-direction: column;
+    height: 100%;
+    min-height: 100%;
+}
+
+/* left to right */
+.row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+
+    flex-direction: row;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.column > .fixed {
+    width: 100%;
+}
+
+.row > .fixed {
+    min-height: 100%;
+    height: 100%;
+}
+
+.column > .flex {
+}
+
+.row > .flex {
+    height: 100%;
+}
+
+/* flexible content area */
+.flex {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    overflow-y: auto;
+}
+
